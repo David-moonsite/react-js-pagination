@@ -17,11 +17,9 @@ var _classnames = _interopRequireDefault(require("classnames"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -120,7 +118,14 @@ function (_React$Component) {
           linkClassNext = _this$props5.linkClassNext,
           linkClassLast = _this$props5.linkClassLast,
           hideFirstLastPages = _this$props5.hideFirstLastPages,
-          getPageUrl = _this$props5.getPageUrl;
+          getPageUrl = _this$props5.getPageUrl,
+          ariaLabelGoToPageText = _this$props5.ariaLabelGoToPageText,
+          ariaLabelGoToPageFromText = _this$props5.ariaLabelGoToPageFromText,
+          ariaLabelGoToFirstPageText = _this$props5.ariaLabelGoToFirstPageText,
+          ariaLabelGoToPreviousPageText = _this$props5.ariaLabelGoToPreviousPageText,
+          ariaLabelGoToNextPageText = _this$props5.ariaLabelGoToNextPageText,
+          ariaLabelGoToLastPageText = _this$props5.ariaLabelGoToLastPageText,
+          pagesCount = _this$props5.pagesCount;
       var paginationInfo = new _paginator["default"](itemsCountPerPage, pageRangeDisplayed).build(totalItemsCount, activePage);
 
       for (var i = paginationInfo.first_page; i <= paginationInfo.last_page; i++) {
@@ -135,7 +140,7 @@ function (_React$Component) {
           linkClass: linkClass,
           activeClass: activeClass,
           activeLinkClass: activeLinkClass,
-          ariaLabel: "Go to page number ".concat(i)
+          ariaLabel: "".concat(ariaLabelGoToPageText, " ").concat(i, " ").concat(ariaLabelGoToPageFromText, " ").concat(pagesCount)
         }));
       }
 
@@ -149,7 +154,7 @@ function (_React$Component) {
         itemClass: (0, _classnames["default"])(itemClass, itemClassPrev),
         linkClass: (0, _classnames["default"])(linkClass, linkClassPrev),
         disabledClass: disabledClass,
-        ariaLabel: "Go to previous page"
+        ariaLabel: ariaLabelGoToPreviousPageText
       }));
       this.isFirstPageVisible(paginationInfo.has_previous_page) && pages.unshift(_react["default"].createElement(_Page["default"], {
         key: "first",
@@ -161,7 +166,7 @@ function (_React$Component) {
         itemClass: (0, _classnames["default"])(itemClass, itemClassFirst),
         linkClass: (0, _classnames["default"])(linkClass, linkClassFirst),
         disabledClass: disabledClass,
-        ariaLabel: "Go to first page"
+        ariaLabel: ariaLabelGoToFirstPageText
       }));
       this.isNextPageVisible(paginationInfo.has_next_page) && pages.push(_react["default"].createElement(_Page["default"], {
         key: "next" + paginationInfo.next_page,
@@ -173,7 +178,7 @@ function (_React$Component) {
         itemClass: (0, _classnames["default"])(itemClass, itemClassNext),
         linkClass: (0, _classnames["default"])(linkClass, linkClassNext),
         disabledClass: disabledClass,
-        ariaLabel: "Go to next page"
+        ariaLabel: ariaLabelGoToNextPageText
       }));
       this.isLastPageVisible(paginationInfo.has_next_page) && pages.push(_react["default"].createElement(_Page["default"], {
         key: "last",
@@ -185,7 +190,7 @@ function (_React$Component) {
         itemClass: (0, _classnames["default"])(itemClass, itemClassLast),
         linkClass: (0, _classnames["default"])(linkClass, linkClassLast),
         disabledClass: disabledClass,
-        ariaLabel: "Go to last page"
+        ariaLabel: ariaLabelGoToLastPageText
       }));
       return pages;
     }
