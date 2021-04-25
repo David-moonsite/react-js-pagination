@@ -103,7 +103,14 @@ export default class Pagination extends React.Component {
       linkClassNext,
       linkClassLast,
       hideFirstLastPages,
-      getPageUrl
+      getPageUrl,
+      ariaLabelGoToPageText,
+      ariaLabelGoToPageFromText,
+      ariaLabelGoToFirstPageText,
+      ariaLabelGoToPreviousPageText,
+      ariaLabelGoToNextPageText,
+      ariaLabelGoToLastPageText,
+      pagesCount
     } = this.props;
 
     const paginationInfo = new paginator(
@@ -128,7 +135,7 @@ export default class Pagination extends React.Component {
           linkClass={linkClass}
           activeClass={activeClass}
           activeLinkClass={activeLinkClass}
-          ariaLabel={`Go to page number ${i}`}
+          ariaLabel={`${ariaLabelGoToPageText} ${i} ${ariaLabelGoToPageFromText} ${pagesCount}`}
         />
       );
     }
@@ -145,7 +152,7 @@ export default class Pagination extends React.Component {
           itemClass={cx(itemClass, itemClassPrev)}
           linkClass={cx(linkClass, linkClassPrev)}
           disabledClass={disabledClass}
-          ariaLabel="Go to previous page"
+          ariaLabel={ariaLabelGoToPreviousPageText}
         />
       );
 
@@ -161,7 +168,7 @@ export default class Pagination extends React.Component {
           itemClass={cx(itemClass, itemClassFirst)}
           linkClass={cx(linkClass, linkClassFirst)}
           disabledClass={disabledClass}
-          ariaLabel="Go to first page"
+          ariaLabel={ariaLabelGoToFirstPageText}
         />
       );
 
@@ -177,7 +184,7 @@ export default class Pagination extends React.Component {
           itemClass={cx(itemClass, itemClassNext)}
           linkClass={cx(linkClass, linkClassNext)}
           disabledClass={disabledClass}
-          ariaLabel="Go to next page"
+          ariaLabel={ariaLabelGoToNextPageText}
         />
       );
 
@@ -195,7 +202,7 @@ export default class Pagination extends React.Component {
           itemClass={cx(itemClass, itemClassLast)}
           linkClass={cx(linkClass, linkClassLast)}
           disabledClass={disabledClass}
-          ariaLabel="Go to last page"
+          ariaLabel={ariaLabelGoToLastPageText}
         />
       );
 
